@@ -1332,27 +1332,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alvaro.yanes\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\ALVARO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\proyectos\\2023\\API_RES_CORE\\API_C_CORE\\RES_API\\RES_API.csproj",
+      "projectUniqueName": "C:\\Proy_2023\\LAB\\API_CORE_C2\\RES_API.csproj",
       "projectName": "RES_API",
-      "projectPath": "C:\\proyectos\\2023\\API_RES_CORE\\API_C_CORE\\RES_API\\RES_API.csproj",
-      "packagesPath": "C:\\Users\\alvaro.yanes\\.nuget\\packages\\",
-      "outputPath": "C:\\proyectos\\2023\\API_RES_CORE\\API_C_CORE\\RES_API\\obj\\",
+      "projectPath": "C:\\Proy_2023\\LAB\\API_CORE_C2\\RES_API.csproj",
+      "packagesPath": "C:\\Users\\ALVARO\\.nuget\\packages\\",
+      "outputPath": "C:\\Proy_2023\\LAB\\API_CORE_C2\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\alvaro.yanes\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "C:\\Users\\ALVARO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -1415,7 +1408,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }
