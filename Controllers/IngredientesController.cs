@@ -23,7 +23,36 @@ namespace Controllers
     public async Task<IActionResult> Get()
     {
 
-      var lista =   _db.Ingredientes.OrderBy(x => x.Id).Select(
+            var res = @"
+
+[
+  {
+    ""id"": 1,
+    ""nombre"": ""fideos"",
+    ""cantidad"": 0,
+    ""chek"": 0
+  },
+  {
+    ""id"": 2,
+    ""nombre"": ""carne molida x"",
+    ""cantidad"": 0,
+    ""chek"": 0
+  },
+  {
+    ""id"": 3,
+    ""nombre"": ""salsa tomate"",
+    ""cantidad"": 0,
+    ""chek"": 0
+  }
+]
+
+";
+
+            return StatusCode(StatusCodes.Status200OK, res);
+
+
+
+            var lista =   _db.Ingredientes.OrderBy(x => x.Id).Select(
 
            p => new { p.Id, p.Nombre , cantidad =  0, chek =  0
  

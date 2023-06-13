@@ -2,7 +2,7 @@ using RES_API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<TestContext>();
+builder.Services.AddDbContext<SppContext>();
 
 // Add services to the container.
 
