@@ -40,7 +40,9 @@ namespace RES_API.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Find([FromBody] UsuUsuario parametro)
-        {
+
+ 
+            {
             /*
             Ingrediente ingre = _db.UsuUsuarios.Find ()
             ingre.Nombre = request.Nombre;
@@ -81,11 +83,10 @@ namespace RES_API.Controllers
 
             
              (p  )=> new {
-               
-                 p.UsuIdrol,
+                  p.UsuIdrol ,
                  p.UsuLogin,
                  p.UsuNombre,
-                 p.UsuRegion,
+                 p.UsuRegion ,
                  p.UsuRut
 
              }) 
@@ -101,13 +102,11 @@ namespace RES_API.Controllers
         }
 
 
-
-        /*
-
-        [HttpGet]
-        [Route("{login:Guid}")]
+        [HttpGet("{id}")]
+   
         public async Task<IActionResult> Get(string id)
           {
+             
             if (id == null || _db.UsuUsuarios == null)
             {
                 return NotFound();
@@ -123,6 +122,64 @@ namespace RES_API.Controllers
         }
 
 
+        [HttpPut]
+      //  [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([FromBody] UsuUsuario parametro)
+        {
+            //   return NotFound();
+            var registroOriginal = await _db.UsuUsuarios.FindAsync(parametro.UsuLogin);
+
+            if (registroOriginal == null)
+            {
+                return NotFound();
+            }
+
+
+
+            try
+            {
+                registroOriginal.UsuRut = parametro.UsuRut;
+                registroOriginal.UsuIdrol = parametro.UsuIdrol;
+                registroOriginal.UsuNombre = parametro.UsuNombre;
+                registroOriginal.UsuRegion = parametro.UsuRegion;
+                registroOriginal.UsuPasswd = parametro.UsuPasswd;
+                registroOriginal.UsuEnable = parametro.UsuEnable;
+
+     
+                _db.Update(registroOriginal);
+                await _db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+               
+                    return StatusCode(StatusCodes.Status500InternalServerError, "ERROR"  );
+              
+            }
+            return StatusCode(StatusCodes.Status200OK, "OK");
+
+         
+           
+        }
+
+        private bool UsuUsuarioExists(string id)
+        {
+            return (_db.UsuUsuarios?.Any(e => e.UsuLogin == id)).GetValueOrDefault();
+        }
+
+
+
+            UsuUsuario Find(string id)
+           {
+
+
+            UsuUsuario usuUsuario =   _db.UsuUsuarios
+                .FirstOrDefault(m => m.UsuLogin == id);
+
+            return usuUsuario;
+
+           }
+        /*
 
         // GET: Usuarios/Create
         public IActionResult Create()
@@ -165,37 +222,7 @@ namespace RES_API.Controllers
         // POST: Usuarios/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPut]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("UsuLogin,UsuRut,UsuIdrol,UsuNombre,UsuPasswd,UsuEnable,UsuRegion,UsuUltimoacceso,UsuCambioclave,UsuNuevo")] UsuUsuario usuUsuario)
-        {
-            if (id != usuUsuario.UsuLogin)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _db.Update(usuUsuario);
-                    await _db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuUsuarioExists(usuUsuario.UsuLogin))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usuUsuario);
-        }
+       
 
         [HttpDelete]
         public async Task<IActionResult> Delete(string id)
@@ -232,10 +259,7 @@ namespace RES_API.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuUsuarioExists(string id)
-        {
-          return (_db.UsuUsuarios?.Any(e => e.UsuLogin == id)).GetValueOrDefault();
-        }
+      
         */
     }
-    }
+}
