@@ -15,7 +15,7 @@ public partial class SppContext : DbContext
     {
     }
 
-    public virtual DbSet<Region> Regions { get; set; }
+    public virtual DbSet<Regiones> Regions { get; set; }
 
     public virtual DbSet<UsuUsuario> UsuUsuarios { get; set; }
 
@@ -27,7 +27,7 @@ public partial class SppContext : DbContext
     {
         modelBuilder.UseCollation("Modern_Spanish_CI_AS");
 
-        modelBuilder.Entity<Region>(entity =>
+        modelBuilder.Entity<Regiones>(entity =>
         {
             entity.HasKey(e => e.CodRegion);
 

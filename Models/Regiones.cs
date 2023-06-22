@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace RES_API.Models;
 
-public partial class Region
+public partial class Regiones
 {
     public short CodRegion { get; set; }
 

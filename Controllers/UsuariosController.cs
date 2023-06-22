@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -162,14 +163,56 @@ namespace RES_API.Controllers
            
         }
 
-        private bool UsuUsuarioExists(string id)
+        [HttpPost("Insert")]
+
+        public async Task<IActionResult> Insert([FromBody] UsuUsuario Usuario  )
         {
-            return (_db.UsuUsuarios?.Any(e => e.UsuLogin == id)).GetValueOrDefault();
+         //   try
+             
+                {
+
+                  if ( await UsuarioExists(Usuario.UsuLogin) )
+                    return StatusCode(StatusCodes.Status400BadRequest, "Ya existe Login");
+
+                if (await RutExists(Usuario.UsuRut))
+                    return StatusCode(StatusCodes.Status400BadRequest, "Ya existe RUT");
+
+
+
+                _db.Add(Usuario);
+                  await _db.SaveChangesAsync();
+                
+             }
+           /*    catch {
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "ERROR");
+            }
+           */
+
+            return StatusCode(StatusCodes.Status200OK, "OK");
+        }
+
+        private async Task<bool> UsuarioExists(string id)
+        {
+
+            var Usuario = await _db.UsuUsuarios.FirstOrDefaultAsync(m => m.UsuLogin == id);
+
+            return (Usuario == null ? false : true  );
+        }
+
+
+        private async Task<bool> RutExists(string id)
+        {
+
+            var Usuario = await _db.UsuUsuarios.FirstOrDefaultAsync(m => m.UsuRut== id);
+
+            return (Usuario == null ? false : true);
         }
 
 
 
-            UsuUsuario Find(string id)
+
+        UsuUsuario Find(string id)
            {
 
 
