@@ -26,12 +26,12 @@ namespace Controllers
             try
             {
                 _usuario = Acceso.accesos("FOSIS", request.usuario, request.clave);
-                return StatusCode(StatusCodes.Status200OK, "{ res:1,msg:'OK', usuario:{ nombre:'"+ _usuario.Nombre + "', user:'"+ _usuario.User+"'}}");
+                return StatusCode(StatusCodes.Status200OK, "{ \"res\":1,\"msg\":\"OK\", \"usuario\":{ \"nombre\":\"" + _usuario.Nombre + "\", \"user\":\"" + _usuario.User+ "\" }}");
             }
             catch (Exception ex)
             {
 
-                return StatusCode(StatusCodes.Status200OK, "{res:-1,msg: 'Usuario o clave incorrectas'}");
+                return StatusCode(StatusCodes.Status200OK, "{\"res\":-1,\"msg\": \"Usuario o clave incorrectas\"}");
 
                 //return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
 
