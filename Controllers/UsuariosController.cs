@@ -74,9 +74,9 @@ namespace RES_API.Controllers
 
                 
 
-            //     (u.UsuIdrol != -1 ? u.UsuIdrol == parametro.UsuIdrol : false) &&
-                  u.UsuNombre.Contains(parametro.UsuNombre)
-              //  (u.UsuRegion != -1 ? u.UsuRegion == parametro.UsuRegion :false )
+                   u.UsuNombre.Contains(parametro.UsuNombre)
+                &&  (u.UsuRegion != -1 ? u.UsuRegion == parametro.UsuRegion :true )
+            //       &&  (u.UsuIdrol != -1 ? u.UsuIdrol == parametro.UsuIdrol : true ) 
 
 
 

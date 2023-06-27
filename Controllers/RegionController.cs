@@ -27,7 +27,7 @@ namespace RES_API.Controllers
 
              (p) => new {
                  
-                id =   p.CodRegion,
+                id =   p.CodRegion.ToString(),
                  p.Nombre
                 
 
