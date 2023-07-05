@@ -21,6 +21,10 @@ namespace Controllers
        
         public async Task<IActionResult> get([FromBody] Req_Usuario_AD request )
         {
+
+            return StatusCode(StatusCodes.Status200OK, "{ \"res\":1,\"msg\":\"OK\", \"usuario\":{ \"nombre\":\"PEPITO TEST\", \"user\":\"usuario_1\" }}");
+
+
             Usuario_AD _usuario = new Usuario_AD();
 
             try
