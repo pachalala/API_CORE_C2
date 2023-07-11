@@ -24,4 +24,6 @@ public partial class UsuUsuario
     public DateTime? UsuCambioclave { get; set; }
 
     public int? UsuNuevo { get; set; }
+
+    public virtual RolRole? UsuIdrolNavigation { get; set; }
 }

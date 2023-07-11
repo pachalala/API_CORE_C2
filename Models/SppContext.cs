@@ -15,19 +15,21 @@ public partial class SppContext : DbContext
     {
     }
 
-    public virtual DbSet<Regiones> Regions { get; set; }
+    public virtual DbSet<Region> Regions { get; set; }
+
+    public virtual DbSet<RolRole> RolRoles { get; set; }
 
     public virtual DbSet<UsuUsuario> UsuUsuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("server=10.201.20.103;database=SPP_TEST;uid=spp;pwd=spp2014; TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("server=10.201.20.103;database=SPP;uid=spp;pwd=spp2014; TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.UseCollation("Modern_Spanish_CI_AS");
 
-        modelBuilder.Entity<Regiones>(entity =>
+        modelBuilder.Entity<Region>(entity =>
         {
             entity.HasKey(e => e.CodRegion);
 
@@ -48,6 +50,19 @@ public partial class SppContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("NOMBRE");
+        });
+
+        modelBuilder.Entity<RolRole>(entity =>
+        {
+            entity.HasKey(e => e.RolIdrol);
+
+            entity.ToTable("ROL_ROLES");
+
+            entity.Property(e => e.RolIdrol).HasColumnName("ROL_IDROL");
+            entity.Property(e => e.RolNombrerol)
+                .HasMaxLength(70)
+                .IsUnicode(false)
+                .HasColumnName("ROL_NOMBREROL");
         });
 
         modelBuilder.Entity<UsuUsuario>(entity =>
@@ -90,6 +105,10 @@ public partial class SppContext : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("USU_ULTIMOACCESO");
+
+            entity.HasOne(d => d.UsuIdrolNavigation).WithMany(p => p.UsuUsuarios)
+                .HasForeignKey(d => d.UsuIdrol)
+                .HasConstraintName("FK_USU_USUARIOS_ROL_ROLES");
         });
 
         OnModelCreatingPartial(modelBuilder);
